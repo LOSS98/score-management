@@ -1,0 +1,70 @@
+@import "../bootstrap/scss/bootstrap";
+
+$white: #ffffff;
+
+$light:      #010801;
+$dark:       #241519;
+$primary:    #c41212;
+$secondary:  #eb4c4e;
+$info:       #ff9068;
+$accent1:    #2799dc;
+$accent2:    #1b62ba;
+$accent3:    #de8975;
+$success:    #61aa00;
+$warning:    #ffc172;
+$danger:     #f50068;
+
+body {
+    background: url('../media/bg01.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($dark, 0.8);  // Couleur noire avec opacité de 0.5
+        z-index: 1;
+    }
+   * {
+        position: relative;
+        z-index: 2;
+    }
+}
+.code-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+.input-group input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 2px solid $white;
+    border-radius: 10px;
+    background-color: transparent;
+    outline: none;
+    color: white;
+}
+.code-button-container {
+    margin-top: 30px; /* Pour éloigner le bouton des cases */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.code-image-container img {
+    max-width: 200px; /* Ajustez la taille selon vos besoins */
+    margin-bottom: 60px; /* Espacement entre l'image et les cases */
+}
