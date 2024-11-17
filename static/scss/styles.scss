@@ -1,4 +1,4 @@
-@import "../bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 $white: #ffffff;
 
@@ -18,7 +18,7 @@ body {
     background: url('../media/bg01.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
 
     &::before {
         content: '';
@@ -27,7 +27,7 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba($dark, 0.8);  // Couleur noire avec opacité de 0.5
+        background-color: rgba($dark, 0.8);
         z-index: 1;
     }
    * {
@@ -58,13 +58,64 @@ body {
     color: white;
 }
 .code-button-container {
-    margin-top: 30px; /* Pour éloigner le bouton des cases */
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
 .code-image-container img {
-    max-width: 200px; /* Ajustez la taille selon vos besoins */
-    margin-bottom: 60px; /* Espacement entre l'image et les cases */
+    max-width: 200px;
+}
+
+.ranking-row {
+    height: 70px;
+    background-color: rgba($secondary, 0.5);
+}
+
+.first-place {
+background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%),
+                radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+}
+
+.second-place {
+    background: linear-gradient(90deg, #C0C0C0, #DCDCDC) !important;
+}
+
+.third-place {
+    background: linear-gradient(90deg, #673208, #db6c2b) !important;
+}
+
+.text-silver {
+    background: linear-gradient(90deg, #C0C0C0, #DCDCDC) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-bronze {
+      background: linear-gradient(90deg, #673208, #db6c2b) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gold {
+    color: #FDB931;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
 }

@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Connection
+{% endblock %}
+
+{% block content %}
+    <div class="container d-flex flex-column justify-content-center align-items-center p-5"
+         style="min-height: 100%; height: 100%;">
+        <div class="text-white mb-2 d-flex align-items-center">
+            <a href="#" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
+                <i class="fa-solid fa-house" style="font-size: 50px;"></i>
+                <h2 class="m-2">Accueil</h2>
+            </a>
+            <a href="#" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
+                <i class="fa-solid fa-arrow-rotate-left" style="font-size: 50px;"></i>
+                <h2 class="m-2">Retour</h2>
+            </a>
+            <a href="#" class="text-decoration-none text-white d-flex align-items-center p-2 m-3" data-bs-toggle="modal"
+               data-bs-target="#addPlayer">
+                <i class="fa-solid fa-plus" style="font-size: 50px;"></i>
+                <h2 class="m-2">Ajouter un joueur</h2>
+            </a>
+        </div>
+    </div>
+    <div class="d-flex">
+        <div class="container align-self-center mx-auto" style="height: 70vh; overflow-y: auto; overflow-x: auto;">
+            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
+                <div class="col-2"><h2>#1568</h2></div>
+                <div class="col-3"><h2>Khalil</h2></div>
+                <div class="col-3"><h2>Mzoughi</h2></div>
+                <div class="col-2"><h2>200 <i class="fa-solid fa-vial"></i></h2></div>
+                <div class="col-2">
+                    <h2><a href="#" class="text-decoration-none text-white"><i class="fa-solid fa-trash"></i></a></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block modal %}
+    <div class="modal fade" id="addPlayer" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un joueur</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="nom">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pr" class="form-label">Prénom</label>
+                            <input type="text" class="form-control" id="pr">
+                        </div>
+                        <div class="mb-3">
+                            <label for="score" class="form-label">Score</label>
+                            <input type="number" min="0" class="form-control" id="score">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

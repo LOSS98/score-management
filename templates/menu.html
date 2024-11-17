@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Connection
+{% endblock %}
+
+{% block content %}
+
+    <div class="container p-5" style="min-height: 100%; height: 100%;">
+        <div class="text-center text-white mb-2">
+            <h2 class="m-2">Bonjour Laura</h2>
+            <p>Tu es connecté sur le Dashboard Admin, fais gaffe ;)</p>
+        </div>
+    </div>
+    <div class="d-flex">
+        <div class="container align-self-center mx-auto" style="height: 80vh; overflow-y: auto;">
+            <div class="row" style="overflow-y: auto;">
+                <div class="card text-center text-white m-3"
+                     style="width: 18rem; background-color: rgba(235, 76, 76, 0.5);">
+                    <a href="./games" class="text-decoration-none text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Tables de jeu</h5>
+                            <h1 class="card-text"><i class="fa-solid fa-gamepad"></i></h1>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="card text-center text-white m-3"
+                     style="width: 18rem; background-color: rgba(235, 76, 76, 0.5);">
+                    <a href="./players" class="text-decoration-none text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Gérer les joueurs</h5>
+                            <h1 class="card-text"><i class="fa-solid fa-user"></i></h1>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="card text-center text-white m-3"
+                     style="width: 18rem; background-color: rgba(235, 76, 76, 0.5);">
+                    <a href="./admins" class="text-decoration-none text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Gérer les admins</h5>
+                            <h1 class="card-text"><i class="fa-solid fa-lock"></i></h1>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="card text-center text-white m-3"
+                     style="width: 18rem; background-color: rgba(235, 76, 76, 0.5);">
+                    <a href="./score" class="text-decoration-none text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Gérer le score</h5>
+                            <h1 class="card-text"><i class="fa-solid fa-vial"></i></h1>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card text-center text-white m-3"
+                     style="width: 18rem; background-color: rgba(235, 76, 76, 0.5);">
+                    <a href="./ranking" class="text-decoration-none text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Voir le classement</h5>
+                            <h1 class="card-text"><i class="fa-solid fa-ranking-star"></i></h1>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="card text-center text-white m-3"
+                     style="width: 18rem; background-color: rgba(235, 76, 76, 0.5);">
+                    <a href="#" class="text-decoration-none text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Se déconnecter</h5>
+                            <h1 class="card-text"><i class="fa-solid fa-right-from-bracket"></i></h1>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

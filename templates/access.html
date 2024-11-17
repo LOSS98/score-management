@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Connection
+{% endblock %}
+
+{% block content %}
+    <div class="container code-form-container">
+         <div class="code-image-container mb-5">
+             <img src="{{ url_for('static', filename='media/chimielilleetudes.png') }}" alt="Chimie Lille Etude">
+             <h5 class="text-center text-white mt-3 mb-5">Chimie Lille Étude</h5>
+        </div>
+        <div class="container">
+            <h3 class="text-center text-white mb-4">Saisissez votre code</h3>
+        </div>
+        <form method="POST" action="/submit">
+            <div class="input-group">
+                <input type="text" maxlength="1" required pattern="\d" name="digit1" oninput="moveToNext(this, 'digit2')">
+                <input type="text" maxlength="1" required pattern="\d" name="digit2" oninput="moveToNext(this, 'digit3')">
+                <input type="text" maxlength="1" required pattern="\d" name="digit3" oninput="moveToNext(this, 'digit4')">
+                <input type="text" maxlength="1" required pattern="\d" name="digit4" oninput="moveToNext(this, 'digit5')">
+                <input type="text" maxlength="1" required pattern="\d" name="digit5" oninput="moveToNext(this, 'digit6')">
+                <input type="text" maxlength="1" required pattern="\d" name="digit6">
+            </div>
+            <div class="code-button-container pb-5">
+                <button type="submit" class="btn btn-success btn-lg">Valider</button>
+            </div>
+            <div class="code-image-container text-center text-white mt-5">
+             <i class="fa-solid fa-flask-vial" style="font-size: 50px;"></i>
+            </div>
+        </form>
+    </div>
+    <script>
+            function moveToNext(current, nextFieldName) {
+                if (current.value.length === current.maxLength) {
+                    const nextField = document.getElementsByName(nextFieldName)[0];
+                    if (nextField) {
+                        nextField.focus();
+                    }
+                }
+            }
+    </script>
+{% endblock %}
