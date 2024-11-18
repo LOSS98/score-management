@@ -1,2 +1,3 @@
 /static/.webassets-cache
 venv
+__pycache__
