@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Connection
+    FaitesVosJE | Gestion des parties
 {% endblock %}
 
 {% block content %}
     <div class="container d-flex flex-column justify-content-center align-items-center p-5"
          style="min-height: 100%; height: 100%;">
         <div class="text-white mb-2 d-flex align-items-center">
-            <a href="#" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
+            <a href="../menu" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
                 <i class="fa-solid fa-house" style="font-size: 50px;"></i>
                 <h2 class="m-2">Accueil</h2>
             </a>
-            <a href="#" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
+            <a href="../games" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
                 <i class="fa-solid fa-arrow-rotate-left" style="font-size: 50px;"></i>
                 <h2 class="m-2">Retour</h2>
             </a>
@@ -22,77 +22,47 @@
                 <h2 class="m-2">Ajouter un joueur</h2>
             </a>
         </div>
+        <div class="text-white text-center"><h4>Gestion des parties | Partie : {{ room.room_code }} {{ room.room_name }}</h4></div>
+        <div class="text-success text-center"><h5>{{ message }}</h5></div>
+        <div class="text-danger text-center"><h5>{{ error }}</h5></div>
     </div>
     <div class="d-flex">
         <div class="container align-self-center mx-auto" style="height: 70vh; overflow-y: auto; overflow-x: auto;">
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#1568</h2></div>
-                <div class="col-3"><h2>Khalil</h2></div>
-                <div class="col-2"><h2>200 <i class="fa-solid fa-vial"></i></h2></div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="plus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </form>
+            {% for player in players %}
+                <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
+                    <div class="col-2"><h2>#{{ player.code }}</h2></div>
+                    <div class="col-3"><h5>{{ player.first_name }} {{ player.last_name }}</h5></div>
+                    <div class="col-2"><h2>{{ player.score }} <i class="fa-solid fa-vial"></i></h2></div>
+                    <div class="col-2">
+                        <form class="d-flex align-items-center" method="post" action="../add-score-game">
+                            <div class="input-group">
+                                <input type="number" min="0" step="1" required name="plus" style="width: 100px;">
+                                <input type="text" value="{{ player.code }}" name="player_code" hidden>
+                                <input type="text" value="{{ room.room_code }}" name="room_code" hidden>
+                                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <form class="d-flex align-items-center" method="post" action="../remove-score-game">
+                            <div class="input-group">
+                                <input type="number" min="0" step="1" required name="minus" style="width: 100px;">
+                                <input type="text" value="{{ player.code }}" name="player_code" hidden>
+                                <input type="text" value="{{ room.room_code }}" name="room_code" hidden>
+                                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-1">
+                        <form action='../remove-player-from-room' method="post">
+                            <input name="player_code" value="{{ player.code }}" hidden>
+                            <input type="text" value="{{ room.room_code }}" name="room_code" hidden>
+                            <button class="btn text-white" type="submit"><h2><i class="fa-solid fa-trash"></i></h2>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="minus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-1">
-                    <h2><a href="#" class="text-decoration-none text-white"><i class="fa-solid fa-trash"></i></a></h2>
-                </div>
-            </div>
-
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#1568</h2></div>
-                <div class="col-3"><h2>Khalil</h2></div>
-                <div class="col-2"><h2>200 <i class="fa-solid fa-vial"></i></h2></div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="plus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="minus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-1">
-                    <h2><a href="#" class="text-decoration-none text-white"><i class="fa-solid fa-trash"></i></a></h2>
-                </div>
-            </div>
-
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#1568</h2></div>
-                <div class="col-3"><h2>Khalil</h2></div>
-                <div class="col-2"><h2>200 <i class="fa-solid fa-vial"></i></h2></div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="plus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="minus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-1">
-                    <h2><a href="#" class="text-decoration-none text-white"><i class="fa-solid fa-trash"></i></a></h2>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
@@ -104,11 +74,12 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un joueur à la table</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form>
+                <form action="../add-player-to-room" method="post">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="code" class="form-label">Code du joueur</label>
-                            <input type="text" class="form-control" id="code">
+                            <input type="text" class="form-control" name="player_code" id="code">
+                            <input type="text" value="{{ room.room_code }}" name="room_code" hidden>
                         </div>
                     </div>
                     <div class="modal-footer">

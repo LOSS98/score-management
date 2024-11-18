@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Connection
+    FaitesVosJE | Dashboard admin
 {% endblock %}
 
 {% block content %}
 
     <div class="container p-5" style="min-height: 100%; height: 100%;">
         <div class="text-center text-white mb-2">
-            <h2 class="m-2">Bonjour Laura</h2>
+            <h2 class="m-2">Bonjour {{ admin_fname }}</h2>
             <p>Tu es connecté sur le Dashboard Admin, fais gaffe ;)</p>
         </div>
     </div>
@@ -71,7 +71,7 @@
 
                 <div class="card text-center text-white m-3"
                      style="width: 18rem; background-color: rgba(235, 76, 76, 0.5);">
-                    <a href="#" class="text-decoration-none text-white">
+                    <a href="./logout-admin" class="text-decoration-none text-white">
                         <div class="card-body">
                             <h5 class="card-title">Se déconnecter</h5>
                             <h1 class="card-text"><i class="fa-solid fa-right-from-bracket"></i></h1>

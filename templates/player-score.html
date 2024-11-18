@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Connection
+    FaitesVosJE | Portefeuille
 {% endblock %}
 
 {% block content %}
@@ -11,30 +11,21 @@
              <h5 class="text-center text-white mt-3">Chimie Lille Étude</h5>
         </div>
         <div class="container">
-            <p class="text-center text-white mb-1">Ton code joueur c'est</p>
-            <h1 class="text-center text-white mb-4" style="font-size: 50px;">FGYL7S</h1>
+            <p class="text-center text-white mb-1"><b>{{fname}} {{lname}},</b></p>
+            <p class="text-center text-white mb-1">ton code joueur c'est</p>
+            <h1 class="text-center text-white mb-4" style="font-size: 50px;">{{code}}</h1>
         </div>
         <div class="container">
             <h3 class="text-center text-white mb-1">Tu es #1 avec</h3>
         </div>
         <div class="container text-center text-white mb-3">
-            <h3 class="text-center mb-3" style="font-size: 150px">200</h3>
+            <h3 class="text-center mb-3" style="font-size: 150px">{{score}}</h3>
             <i class="fa-solid fa-vial text-gold" style="font-size: 100px"></i>
         </div>
         <div class="container text-center">
             <a href="./ranking" class="text-center text-white mb-2">Voir le tableau de classement</a><br>
-            <a href="./" class="text-center text-white mt-3">Se déconnecter</a>
+            <a href="./logout" class="text-center text-white mt-3">Se déconnecter</a>
         </div>
 
     </div>
-    <script>
-            function moveToNext(current, nextFieldName) {
-                if (current.value.length === current.maxLength) {
-                    const nextField = document.getElementsByName(nextFieldName)[0];
-                    if (nextField) {
-                        nextField.focus();
-                    }
-                }
-            }
-    </script>
 {% endblock %}

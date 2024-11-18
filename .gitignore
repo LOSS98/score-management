@@ -1,2 +1,5 @@
 /static/.webassets-cache
 venv
+__pycache__
+.env
+flask_session
