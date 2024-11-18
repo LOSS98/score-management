@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Connection
+    FaitesVosJE | Accès au portefeuille
 {% endblock %}
 
 {% block content %}
@@ -13,14 +13,14 @@
         <div class="container">
             <h3 class="text-center text-white mb-4">Saisissez votre code</h3>
         </div>
-        <form method="POST" action="/submit">
+        <form method="POST" action="./" oninput="this.value = this.value.toUpperCase()">
             <div class="input-group">
-                <input type="text" maxlength="1" required pattern="\d" name="digit1" oninput="moveToNext(this, 'digit2')">
-                <input type="text" maxlength="1" required pattern="\d" name="digit2" oninput="moveToNext(this, 'digit3')">
-                <input type="text" maxlength="1" required pattern="\d" name="digit3" oninput="moveToNext(this, 'digit4')">
-                <input type="text" maxlength="1" required pattern="\d" name="digit4" oninput="moveToNext(this, 'digit5')">
-                <input type="text" maxlength="1" required pattern="\d" name="digit5" oninput="moveToNext(this, 'digit6')">
-                <input type="text" maxlength="1" required pattern="\d" name="digit6">
+                <input type="text" maxlength="1" required pattern="[A-Z0-9]" name="digit1" oninput="moveToNext(this, 'digit2')" onkeydown="moveToPrev(event, this, 'digit1')">
+                <input type="text" maxlength="1" required pattern="[A-Z0-9]" name="digit2" oninput="moveToNext(this, 'digit3')" onkeydown="moveToPrev(event, this, 'digit1')">
+                <input type="text" maxlength="1" required pattern="[A-Z0-9]" name="digit3" oninput="moveToNext(this, 'digit4')" onkeydown="moveToPrev(event, this, 'digit2')">
+                <input type="text" maxlength="1" required pattern="[A-Z0-9]" name="digit4" oninput="moveToNext(this, 'digit5')" onkeydown="moveToPrev(event, this, 'digit3')">
+                <input type="text" maxlength="1" required pattern="[A-Z0-9]" name="digit5" oninput="moveToNext(this, 'digit6')" onkeydown="moveToPrev(event, this, 'digit4')">
+                <input type="text" maxlength="1" required pattern="[A-Z0-9]" name="digit6" onkeydown="moveToPrev(event, this, 'digit5')">
             </div>
             <div class="code-button-container pb-5">
                 <button type="submit" class="btn btn-success btn-lg">Valider</button>
@@ -31,13 +31,42 @@
         </form>
     </div>
     <script>
-            function moveToNext(current, nextFieldName) {
-                if (current.value.length === current.maxLength) {
-                    const nextField = document.getElementsByName(nextFieldName)[0];
-                    if (nextField) {
-                        nextField.focus();
-                    }
+        function moveToNext(current, nextFieldName) {
+            if (current.value.length === current.maxLength) {
+                const nextField = document.getElementsByName(nextFieldName)[0];
+                if (nextField) {
+                    nextField.focus();
                 }
             }
+        }
+
+        function moveToPrev(event, current, prevFieldName) {
+            if (event.key === 'Backspace' && current.value.length === 0) {
+                const prevField = document.getElementsByName(prevFieldName)[0];
+                if (prevField) {
+                    prevField.focus();
+                }
+            }
+        }
+
+        // Événement pour gérer le collage dans la première case
+        document.querySelectorAll('.input-group input')[0].addEventListener('paste', function(event) {
+            const pasteData = (event.clipboardData || window.clipboardData).getData('text').toUpperCase();
+            const inputFields = document.querySelectorAll('.input-group input');
+
+            event.preventDefault(); // Empêche le comportement par défaut du collage
+
+            // Répartit les caractères collés dans les champs
+            for (let i = 0; i < inputFields.length; i++) {
+                inputFields[i].value = pasteData[i] || ''; // Met un caractère ou laisse vide si la longueur est insuffisante
+            }
+        });
+
+        // Force les caractères en majuscules lors de la saisie
+        document.querySelectorAll('.input-group input').forEach(input => {
+            input.addEventListener('input', () => {
+                input.value = input.value.toUpperCase();
+            });
+        });
     </script>
 {% endblock %}

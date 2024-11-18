@@ -1,81 +1,46 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Connection
+    FaitesVosJE | Classement
 {% endblock %}
 
 {% block content %}
 
-    <div class="container d-flex flex-column justify-content-center align-items-center p-5" style="min-height: 100%; height: 100%;">
+    <div class="container d-flex flex-column justify-content-center align-items-center p-5"
+         style="min-height: 100%; height: 100%;">
         <div class="text-white mb-2">
-            <a href="#" class="text-decoration-none text-white d-flex align-items-center">
+            <a href="{{ return_link }}" class="text-decoration-none text-white d-flex align-items-center">
                 <i class="fa-solid fa-arrow-rotate-left" style="font-size: 50px;"></i>
                 <h2 class="m-2">Retour</h2>
             </a>
         </div>
     </div>
     <div class="d-flex">
-        <div class="container align-self-center mx-auto" style="height: 70vh; overflow-y: auto;">
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2 first-place">
-                <div class="col-2"><h2><i class="fa-solid fa-medal"></i></h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2 second-place">
-                <div class="col-2"><h2>#2</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2 third-place">
-                <div class="col-2"><h2>#3</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#4</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#5</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#6</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#7</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#8</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#9</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#10</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#11</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#12</h2></div>
-                <div class="col-5"><h2>Laura</h2></div>
-                <div class="col-5"><h2>200 <i class="fa-regular fa-vial"></i></h2></div>
-            </div>
-        </div>
+    <div class="container align-self-center mx-auto" style="height: 70vh; overflow-y: auto;">
+    {% for i in range(0, count_players) %}
+
+    {% if i == 0 %}
+        <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2 first-place">
+    {% elif i == 1 %}
+        <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2 second-place">
+    {% elif i == 2 %}
+        <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2 third-place">
+    {% else %}
+        <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
+    {% endif %}
+    <div class="col-2">
+        <h2>
+            {% if i == 0 %}
+                <i class="fa-solid fa-medal"></i>
+            {% else %}
+                {{ i + 1 }}
+            {% endif %}
+        </h2>
     </div>
+    <div class="col-5"><h2>{{ players[i].first_name }} {{ players[i].last_name }}</h2></div>
+    <div class="col-5"><h2>{{ players[i].score }} <i class="fa-regular fa-vial"></i></h2></div>
+    </div>
+    {% endfor %}
+</div>
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Connection
+    FaitesVosJE | Accès admin
 {% endblock %}
 
 {% block content %}
@@ -13,14 +13,14 @@
         <div class="container">
             <h3 class="text-center text-white mb-4">Connection Admin</h3>
         </div>
-        <form class="text-white">
+        <form method="post" action="./login" class="text-white">
             <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" name="email" id="email">
             </div>
           <div class="mb-3">
             <label for="pass" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="pass">
+            <input type="password" class="form-control" name="password" id="pass">
           </div>
           <button type="submit" class="btn btn-secondary">Se connecter</button>
         </form>

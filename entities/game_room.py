@@ -1,8 +1,8 @@
 from database.db_setup import db
 from sqlalchemy import Table, Column, ForeignKey
 from sqlalchemy.orm import relationship
+from entities.player import Player
 
-# Association table for many-to-many relationship
 player_game_room = db.Table('player_game_room',
     db.Column('player_code', db.String(6), db.ForeignKey('players.code')),
     db.Column('room_code', db.String(6), db.ForeignKey('game_rooms.room_code'))
@@ -23,7 +23,6 @@ class GameRoom(db.Model):
         self.created_by = created_by
 
     def generate_code(self):
-        # Reuse the code generation logic from Player
         import random
         import string
         while True:
@@ -58,3 +57,15 @@ class GameRoom(db.Model):
         if room:
             db.session.delete(room)
             db.session.commit()
+
+    def count_players(self):
+        return len(self.players)
+
+    def to_dict(self):
+        return {
+            'room_code': self.room_code,
+            'room_name': self.room_name,
+            'created_by': self.created_by,
+            'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S') if self.created_at else None,
+            'player_count': self.count_players()
+        }

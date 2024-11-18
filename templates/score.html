@@ -1,77 +1,86 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Connection
+    FaitesVosJE | Gestion des scores
 {% endblock %}
 
 {% block content %}
     <div class="container d-flex flex-column justify-content-center align-items-center p-5"
          style="min-height: 100%; height: 100%;">
         <div class="text-white mb-2 d-flex align-items-center">
-            <a href="#" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
+            <a href="./menu" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
                 <i class="fa-solid fa-house" style="font-size: 50px;"></i>
                 <h2 class="m-2">Accueil</h2>
             </a>
-            <a href="#" class="text-decoration-none text-white d-flex align-items-center p-2 m-3">
-                <i class="fa-solid fa-arrow-rotate-left" style="font-size: 50px;"></i>
-                <h2 class="m-2">Retour</h2>
-            </a>
         </div>
+        <div class="text-white text-center"><h4>Gestion des scores</h4></div>
+        <div class="text-success text-center"><h5>{{ message }}</h5></div>
+        <div class="text-danger text-center"><h5>{{ error }}</h5></div>
     </div>
     <div class="d-flex">
         <div class="container align-self-center mx-auto" style="height: 70vh; overflow-y: auto; overflow-x: auto;">
             <div class="row text-white text-center ranking-row third-place d-flex justify-content-center align-items-center rounded mb-2">
                 <div class="col-3"><h2>Tous les joueurs</h2></div>
-                <div class="col-3"><h2>20000 <i class="fa-solid fa-vial"></i></h2></div>
+                <div class="col-3"><h2>{{ total_score }} <i class="fa-solid fa-vial"></i></h2></div>
                 <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="plus" style="width: 100px;">
+                    <form action="../add-score-all" method="post" class="d-flex align-items-center">
+                        <div class="input-group"><input type="number" min="0" step="1" required name="plus"
+                                                        style="width: 100px;">
                             <button class="btn btn-danger" type="submit"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </form>
                 </div>
                 <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="minus" style="width: 100px;">
+                    <form action="../remove-score-all" method="post" class="d-flex align-items-center">
+                        <div class="input-group"><input type="number" min="0" step="1" required name="minus"
+                                                        style="width: 100px;">
                             <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
                         </div>
                     </form>
                 </div>
                 <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="minus" style="width: 100px;">
+                    <form action="../set-score-all" method="post" class="d-flex align-items-center">
+                        <div class="input-group"><input type="number" min="0" step="1" required name="set"
+                                                        style="width: 100px;">
                             <button class="btn btn-danger" type="submit"><i class="fa-solid fa-gear"></i></button>
                         </div>
                     </form>
                 </div>
             </div>
-
-            <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
-                <div class="col-2"><h2>#1568</h2></div>
-                <div class="col-2"><h2>Khalil</h2></div>
-                <div class="col-2"><h2>200 <i class="fa-solid fa-vial"></i></h2></div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="plus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                    </form>
+            {% for player in players %}
+                <div class="row text-white text-center ranking-row d-flex justify-content-center align-items-center rounded mb-2">
+                    <div class="col-2"><h2>#{{ player.code }}</h2></div>
+                    <div class="col-2"><h5>{{ player.first_name }} {{ player.last_name }}</h5></div>
+                    <div class="col-2"><h2>{{ player.score }} <i class="fa-solid fa-vial"></i></h2></div>
+                    <div class="col-2">
+                        <form action="../add-score" method="post" class="d-flex align-items-center">
+                            <input type="text" value="{{ player.code }}" name="player_code" hidden>
+                            <div class="input-group"><input type="number" min="0" step="1" required name="plus"
+                                                            style="width: 100px;">
+                                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <form action="../remove-score" method="post" class="d-flex align-items-center">
+                            <input type="text" value="{{ player.code }}" name="player_code" hidden>
+                            <div class="input-group"><input type="number" min="0" step="1" required name="minus"
+                                                            style="width: 100px;">
+                                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <form action="../set-score" method="post" class="d-flex align-items-center">
+                            <input type="text" value="{{ player.code }}" name="player_code" hidden>
+                            <div class="input-group"><input type="number" min="0" step="1" required name="set"
+                                                            style="width: 100px;">
+                                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-gear"></i></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="minus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-minus"></i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-2">
-                    <form class="d-flex align-items-center">
-                        <div class="input-group"><input type="number" required name="minus" style="width: 100px;">
-                            <button class="btn btn-danger" type="submit"><i class="fa-solid fa-gear"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
