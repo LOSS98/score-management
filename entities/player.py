@@ -66,3 +66,14 @@ class Player(db.Model):
     def get_all_players_ordered_by_score():
         return Player.query.order_by(Player.score.desc()).all()
 
+    def get_rank(self):
+        rank_query = db.session.query(
+            Player.code,
+            func.rank().over(order_by=Player.score.desc()).label('rank')
+        ).all()
+
+        for code, rank in rank_query:
+            if code == self.code:
+                return rank
+
+        return None
