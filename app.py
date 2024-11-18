@@ -69,7 +69,7 @@ def index():
     if is_player_logged_in():
         player = Player.query.filter_by(code=session['player_code']).first()
         return render_template('player-score.html', code=session['player_code'], score=player.score,
-                               fname=session['player_fname'], lname=session['player_lname'])
+                               fname=session['player_fname'], lname=session['player_lname'], rank = player.get_rank())
     if request.method == 'POST':
         code = str(request.form.get('digit1')) + str(request.form.get('digit2')) + str(
             request.form.get('digit3')) + str(request.form.get('digit4')) + str(request.form.get('digit5')) + str(
