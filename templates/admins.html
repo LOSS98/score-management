@@ -38,9 +38,9 @@
                         </form>
                     </div>
                     <div class="col-1">
-                        <form action='../delete-admin' method="post">
+                        <form action='../delete-admin' method="post" >
                             <input name="admin_id" value="{{ admin.id }}" hidden>
-                            <button class="btn text-white" type="submit"><h2><i class="fa-solid fa-trash"></i></h2>
+                            <button class="btn text-white" type="submit" {{ "disabled" if admin.id == current_admin }}><h2><i class="fa-solid fa-trash"></i></h2>
                             </button>
                         </form>
                     </div>

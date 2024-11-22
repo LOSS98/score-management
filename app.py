@@ -20,6 +20,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///score_management.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 Session(app)
 
+load_dotenv()
+
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
 app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT'))
 app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS') == 'True'
@@ -557,7 +559,7 @@ def admins():
             error = ''
         admins = Admin.query.all()
         admins_list = [admin.to_dict() for admin in admins]
-        return render_template('admins.html', admins = admins_list, message=message, error=error)
+        return render_template('admins.html', current_admin = session['admin_id'] , admins = admins_list, message=message, error=error)
     return redirect(url_for('login'))
 
 @app.route('/delete-admin', methods=['GET', 'POST'])

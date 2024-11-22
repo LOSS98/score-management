@@ -18,7 +18,20 @@
         {% block content %}
         {% endblock %}
     </div>
+    <script>
+        const forms = document.querySelectorAll('form');
+
+        forms.forEach(form => {
+            form.addEventListener('submit', function(event) {
+                const userConfirmed = confirm('Yo le·a chimiste 🧪 ! Sûr·e de vouloir continuer ?');
+                if (!userConfirmed) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </body>
+
 {% block modal %}
 {% endblock %}
 </html>
